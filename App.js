@@ -1,5 +1,5 @@
 import { NativeBaseProvider, Box } from 'native-base';
-import Example from './home/components/Example';
+import Example from './home/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import Login from './login/Login';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';

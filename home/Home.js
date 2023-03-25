@@ -1,6 +1,7 @@
 import React from 'react';
 import { IconButton, FlatList, Icon, NativeBaseProvider, Box, Center, Heading, Stack, HStack, Text } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, View } from 'react-native'
 
 function WelcomeName() {
   return <Heading color="white" size="md" ml="-1">
@@ -41,14 +42,23 @@ function AppDrawer() {
   }
   
   function Example() {
-    return <Box alignItems="center" flex={1} mt="12">
-      <WelcomeName />
-      <AppDrawer />
-      <Favorites />
-    </Box>
+    return <View style={styles.container}>
+      <Box alignItems="center" flex={1} mt="12">
+        <WelcomeName />
+        <AppDrawer />
+        <Favorites />
+      </Box>
+    </View>
 
   }
 
-  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: 'black',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  })
 
 export default Example;
