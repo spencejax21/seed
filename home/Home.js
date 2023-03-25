@@ -4,8 +4,9 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native'
 
 function WelcomeName() {
+
   return <Heading color="white" size="md" ml="-1">
-    Welcome, user
+    Welcome, user!
   </Heading>
 }
 
@@ -60,5 +61,6 @@ function AppDrawer() {
       justifyContent: 'center'
     }
   })
+
 
 export default Home;

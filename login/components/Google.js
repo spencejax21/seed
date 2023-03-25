@@ -1,8 +1,15 @@
 import { Box, Text,  HStack, Pressable, Center, Image} from "native-base";
+import { getAuth, signInWithRedirect } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
 export default Google = ({navigation}) => {
     return <Box alignItems="center">
         <Pressable rounded="xl" bg="#1d2225" shadow="3" p="2"  onPress={() => {
+
+            auth = getAuth()
+            provider = new GoogleAuthProvider();
+            signInWithRedirect(auth, provider);
+
             navigation.navigate('home')
             navigation.reset({
                 index: 0,
