@@ -41,7 +41,7 @@ function AppDrawer() {
     </Stack>
   }
   
-  function Example() {
+  function Home() {
     return <View style={styles.container}>
       <Box alignItems="center" flex={1} mt="12">
         <WelcomeName />
@@ -61,4 +61,4 @@ function AppDrawer() {
     }
   })
 
-export default Example;
+export default Home;
