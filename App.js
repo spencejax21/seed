@@ -1,11 +1,15 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
+import { NativeBaseProvider } from 'native-base';
 import Example from './home/components/Example';
+import Login from './login/Login';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Example/>
+      <NativeBaseProvider>
+        <Login/>
+      </NativeBaseProvider>
       <StatusBar style="auto"/>
     </View>
 
@@ -14,7 +18,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center'
   }
