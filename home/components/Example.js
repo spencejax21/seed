@@ -1,30 +1,54 @@
-import { NativeBaseProvider, Text, HStack, Box, VStack, Pressable, Image} from "native-base";
+import React from 'react';
+import { IconButton, FlatList, Icon, NativeBaseProvider, Box, Center, Heading, Stack, HStack, Text } from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons';
 
-const Example = () => {
-    return <NativeBaseProvider>
-      <Box bg="primary.600" py="4" px="3" borderRadius="5" rounded="md" width={375} maxWidth="100%">
-        <HStack justifyContent="space-between">
-          <Box justifyContent="space-between">
-            <VStack space="2">
-              <Text fontSize="sm" color="white">
-                Today @ 9PM
-              </Text>
-              <Text color="white" fontSize="xl">
-                Let's talk about avatar!
-              </Text>
-            </VStack>
-            <Pressable rounded="xs" bg="primary.400" alignSelf="flex-start" py="1" px="3">
-              <Text textTransform="uppercase" fontSize="sm" fontWeight="bold" color="white">
-                Remind me
-              </Text>
-            </Pressable>
-          </Box>
-          <Image source={{
-          uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg'
-        }} alt="Aang flying and surrounded by clouds" height="100" rounded="full" width="100" />
-        </HStack>
-      </Box>
-    </NativeBaseProvider>;
+function WelcomeName() {
+  return <Heading color="white" size="md" ml="-1">
+    Welcome, user
+  </Heading>
+}
+
+function AppDrawer() {
+  const icons = [{
+      name: 'home',
+      bg: 'amber.600'
+    }, {
+      name: 'directions-bus',
+      bg: 'emerald.600'
+    }, {
+      name: 'cloud',
+      bg: 'blue.600'
+    }, {
+      name: 'list',
+      bg: 'orange.600'
+    }];
+    return <FlatList numColumns={2} m={'-4px'} data={icons} renderItem={({
+      item
+    }) => {
+      return <IconButton m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
+    }} />;
   }
+
+  function Favorites() {
+    return <Stack space={2}>
+      <Heading color="white" size="md" ml="-1">
+          Favorites
+      </Heading>
+      <Text fontSize="xs" color="white" fontWeight="500" ml="-0.5" mt="-1">
+        You have no favorited tasks
+      </Text>
+    </Stack>
+  }
+  
+  function Example() {
+    return <Box alignItems="center" flex={1} mt="12">
+      <WelcomeName />
+      <AppDrawer />
+      <Favorites />
+    </Box>
+
+  }
+
+  
 
 export default Example;
