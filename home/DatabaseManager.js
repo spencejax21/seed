@@ -46,5 +46,14 @@ export default class DatabaseManager{
             return {};
         }
     }
+
+    static addPoints = async (user, amount) => {
+        userInfo = this.getUser(user);
+        const docRef = doc(database, "users", user);
+        await setDoc(doc(docRef, user), {
+            username: userInfo.user,
+            points: userInfo.points + amount
+        });
+    }
 }
 
