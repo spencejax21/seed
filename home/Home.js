@@ -26,7 +26,15 @@ const AppDrawer = ({navigation}) => {
     return <FlatList numColumns={2} m={'-4px'} data={icons} renderItem={({
       item
     }) => {
-      return <IconButton  m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
+      return <IconButton m={'12px'} borderRadius="full" bg={item.bg} variant="solid" 
+        p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} 
+        onPress={() => {
+          navigation.navigate('detail')
+          navigation.reset({
+              index: 0,
+              routes: [{ name: 'detail' }],
+          });
+        }} />;
     }} />;
   }
 
