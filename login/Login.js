@@ -11,16 +11,10 @@ export default Login = ({navigation}) => {
                         navigation.navigate('signup')
                     }}>
                     <Center width={64} height={8}>
-                        <Text bold color="white">Sign Up</Text>
+                        <Text bold color="white">Login</Text>
                     </Center>
                     </Pressable>
-                    <Pressable rounded="xl" bg="#1d2225" shadow="3" p="2"  onPress={() => {
-                        navigation.navigate('signin');
-                    }}>
-                    <Center width={64} height={8}>
-                        <Text bold color="white">Log In</Text>
-                    </Center>
-                    </Pressable>
+                    
                 </VStack>
             </Center>
         </Box>
