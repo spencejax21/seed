@@ -1,7 +1,8 @@
 import React from 'react';
-import { IconButton, FlatList, Icon, NativeBaseProvider, Box, Center, Heading, Stack, HStack, Text } from 'native-base';
+import { IconButton, FlatList, Icon, NativeBaseProvider, Box, Center, Heading, Stack, HStack, Text, Pressable } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 function WelcomeName() {
 
@@ -10,7 +11,7 @@ function WelcomeName() {
   </Heading>
 }
 
-function AppDrawer() {
+const AppDrawer = ({navigation}) => {
   const icons = [{
       name: 'home',
       bg: 'amber.600'
@@ -24,10 +25,18 @@ function AppDrawer() {
       name: 'list',
       bg: 'orange.600'
     }];
-    return <FlatList numColumns={2} m={'-4px'} data={icons} renderItem={({
+    return <FlatList scrollEnabled="false" numColumns={2} m={'-4px'} data={icons} renderItem={({
       item
     }) => {
-      return <IconButton m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
+      return <IconButton m={'12px'} borderRadius="full" bg={item.bg} variant="solid" 
+        p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} 
+        onPress={() => {
+          navigation.navigate('detail')
+          navigation.reset({
+              index: 0,
+              routes: [{ name: 'detail' }],
+          });
+        }} />;
     }} />;
   }
 
@@ -42,15 +51,29 @@ function AppDrawer() {
     </Stack>
   }
   
-  function Home() {
+  function Home({navigation}) {
     return <View style={styles.container}>
       <Box alignItems="center" flex={1} mt="12">
-        <WelcomeName />
-        <AppDrawer />
-        <Favorites />
+        <Box justifyContent="space-between" display="flex" flexDirection="row" style={{gap:"160%"}}>
+          <WelcomeName />
+          <Avatar navigation={navigation}/>
+        </Box>
+        <Box paddingTop="35%">
+          <AppDrawer />
+          <Favorites />
+        </Box>
       </Box>
     </View>
 
+  }
+
+  function Avatar({navigation}) {
+    return( 
+      <Pressable onPress={() => {
+          navigation.navigate('profile');
+      }}>
+          <Ionicons name="person-circle" size={36} color="white" alignItems="right"/>
+      </Pressable>);
   }
 
   const styles = StyleSheet.create({
