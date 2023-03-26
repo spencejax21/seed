@@ -76,7 +76,7 @@ const TaskList = ({route, navigation}) => {
   };
 
   function Back({navigation}) {
-    return <IconButton mr="82%" mt="4"  m={'4px'} borderRadius="full" variant="solid" 
+    return <IconButton mr="82%" mt="8"  m={'4px'} borderRadius="full" variant="solid" 
         p="2" icon={<Icon color="white" name="back" as={Entypo} size="lg" aria-label="back"/>} 
         onPress={() => {
           navigation.navigate('home');
