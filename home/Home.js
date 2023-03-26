@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, FlatList, Icon, NativeBaseProvider, Box, Center, Heading, Stack, HStack, Text } from 'native-base';
+import { IconButton, FlatList, Icon, NativeBaseProvider, Pressable, Box, Center, Heading, Stack, HStack, Text } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native'
 
@@ -9,7 +9,7 @@ function WelcomeName() {
   </Heading>
 }
 
-function AppDrawer() {
+const AppDrawer = ({navigation}) => {
   const icons = [{
       name: 'home',
       bg: 'amber.600'
@@ -26,7 +26,7 @@ function AppDrawer() {
     return <FlatList numColumns={2} m={'-4px'} data={icons} renderItem={({
       item
     }) => {
-      return <IconButton m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
+      return <IconButton  m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
     }} />;
   }
 
@@ -41,11 +41,11 @@ function AppDrawer() {
     </Stack>
   }
   
-  function Home() {
+  const Home = ({navigation}) => {
     return <View style={styles.container}>
       <Box alignItems="center" flex={1} mt="12">
         <WelcomeName />
-        <AppDrawer />
+        <AppDrawer navigation={navigation}/>
         <Favorites />
       </Box>
     </View>
