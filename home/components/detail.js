@@ -12,11 +12,11 @@ const TaskList = ({route, navigation}) => {
     const [day, setDay] = React.useState("");
   
     const handleStatusChange = index => {
-      setList(async (prevList) => {
+      setList(prevList => {
         const newList = [...prevList];
         if(!newList[index].isCompleted){
           newList[index].isCompleted = true;
-          await DatabaseManager.addPoints(user, newList[index].points);
+          DatabaseManager.addPoints(user, newList[index].points);
         }
         //newList[index].isCompleted = !newList[index].isCompleted;
         return newList;
@@ -33,6 +33,7 @@ const TaskList = ({route, navigation}) => {
             dbList.push({title: task.text, points: task.points, isCompleted: false});
           });
           setList(dbList);
+          //console.log(dbList);
           const d = new Date();
           const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
           setDay(weekday[d.getDay()]);
@@ -61,13 +62,13 @@ const TaskList = ({route, navigation}) => {
           <VStack space={4}>
             <ScrollView space={2}>
               {list.map((item, itemI) => <HStack w="100%" justifyContent="space-between" alignItems="center" key={item.title + itemI.toString()}>
-                  <Checkbox isChecked={item.isCompleted} onChange={() => handleStatusChange(itemI)} value={item.title + " (" + item.points + " pts)"} accessibilityLabel = {item.title}></Checkbox>
+                  <Checkbox isChecked={item.isCompleted} onChange={() => handleStatusChange(itemI)} value={item.title} accessibilityLabel = {item.title}></Checkbox>
                   <Text width="100%" flexShrink={1} textAlign="left" mx="2" strikeThrough={item.isCompleted} _light={{
                 color: item.isCompleted ? "gray.400" : "coolGray.800"
               }} _dark={{
                 color: item.isCompleted ? "gray.400" : "coolGray.50"
-              }} onPress={async () => await handleStatusChange(itemI)}>
-                    {item.title}
+              }} onPress={() => handleStatusChange(itemI)}>
+                    {item.title + " (" + item.points + " pts)"}
                   </Text>
                 </HStack>)}
             </ScrollView>

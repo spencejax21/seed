@@ -1,5 +1,5 @@
 import { database } from '../firebaseConfig';
-import { collection, doc, getDocs, getDoc} from "firebase/firestore";
+import { collection, doc, getDocs, getDoc, setDoc, FieldValue} from "firebase/firestore";
 
 export default class DatabaseManager{
     static getTasks = async (type) => {
@@ -48,11 +48,9 @@ export default class DatabaseManager{
     }
 
     static addPoints = async (user, amount) => {
-        userInfo = this.getUser(user);
         const docRef = doc(database, "users", user);
-        await setDoc(doc(docRef, user), {
-            username: userInfo.user,
-            points: userInfo.points + amount
+        await docRef.update({
+            points: amount
         });
     }
 }
