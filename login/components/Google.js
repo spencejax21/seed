@@ -13,7 +13,7 @@ export default Google = ({navigation}) => {
             navigation.navigate('home')
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'home' }],
+                routes: [{ name: 'main' }],
               });
         }}>
             <Center width={64} height={8}>

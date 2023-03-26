@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 
 export default Login = ({navigation}) => {
     return <View style={styles.container}>
-        <Box flex={1} bg="black" alignItems="center" justifyContent="center">
+        <Box flex={1} bg="white" alignItems="center" justifyContent="center">
             <Center>
                 <VStack space={6} alignItems="center">
                     <Heading size="lg" color="white">Seed</Heading>
@@ -30,7 +30,7 @@ export default Login = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'black',
+      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center'
     }

@@ -7,6 +7,8 @@ import Signup from './login/Signup';
 import Signin from './login/Signin';
 import Profile from './profile/Profile';
 import Detail from './home/components/detail';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import Main from './Main';
 
 
 export default function App() {
@@ -23,7 +25,11 @@ export default function App() {
                 <Stack.Screen name="signin" component={Signin}/>
                 <Stack.Screen name="profile" component={Profile}/>
                 <Stack.Screen name="detail" component={Detail} />
+                <Stack.Screen name="main" component={Main}/>
               </Stack.Navigator>
+          </NavigationContainer>
+          <NavigationContainer>
+            
           </NavigationContainer>
         </NativeBaseProvider>
   );
