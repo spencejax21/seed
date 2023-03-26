@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
+import { Input, Pressable, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { StyleSheet, View } from 'react-native'
 
@@ -90,10 +90,19 @@ const TaskList = ({route, navigation}) => {
       </Center>;
   };
 
+  function Back({navigation}) {
+    return <IconButton mr="82%" mt="4"  m={'4px'} borderRadius="full" variant="solid" 
+        p="2" icon={<Icon color="white" name="back" as={Entypo} size="lg" aria-label="back"/>} 
+        onPress={() => {
+          navigation.navigate('home');
+        }} />;
+  }
+
 
   function Detail({route, navigation}) {
     return <View style={styles.container}>
-      <Box alignItems="center" flex={1} mt="12">
+      <Back navigation={navigation}/>
+      <Box alignItems="center" flex={1} mt="8">     
         <TaskList route={route} navigation={navigation}/>
       </Box>
     </View>
@@ -105,7 +114,7 @@ const TaskList = ({route, navigation}) => {
       flex: 1,
       backgroundColor: 'white',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
     }
   })
 
