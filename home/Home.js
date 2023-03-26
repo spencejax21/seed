@@ -7,7 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 function WelcomeName() {
 
-  return <Heading color="white" size="md" ml="-1">
+  return <Heading color="black" size="md" ml="-1">
     Welcome, user!
   </Heading>
 }
