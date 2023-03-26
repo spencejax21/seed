@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 function WelcomeName() {
-  return <Heading color="white" size="md" ml="-1">
+  return <Heading color="black" size="md" ml="-1">
     Welcome, user
   </Heading>
 }
@@ -43,10 +43,10 @@ const AppDrawer = ({navigation}) => {
 
   function Favorites() {
     return <Stack space={2}>
-      <Heading color="white" size="md" ml="-1">
+      <Heading color="black" size="md" ml="-1">
           Favorites
       </Heading>
-      <Text fontSize="xs" color="white" fontWeight="500" ml="-0.5" mt="-1">
+      <Text fontSize="xs" color="black" fontWeight="500" ml="-0.5" mt="-1">
         You have no favorited tasks
       </Text>
     </Stack>
@@ -73,14 +73,14 @@ const AppDrawer = ({navigation}) => {
       <Pressable onPress={() => {
           navigation.navigate('profile');
       }}>
-          <Ionicons name="person-circle" size={36} color="white" alignItems="right"/>
+          <Ionicons name="person-circle" size={36} color="black" alignItems="right"/>
       </Pressable>);
   }
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'black',
+      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center'
     }
