@@ -24,7 +24,7 @@ const AppDrawer = ({navigation}) => {
       name: 'list',
       bg: 'orange.600'
     }];
-    return <FlatList numColumns={2} m={'-4px'} data={icons} renderItem={({
+    return <FlatList scrollEnabled="false" numColumns={2} m={'-4px'} data={icons} renderItem={({
       item
     }) => {
       return <IconButton  m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
