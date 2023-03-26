@@ -1,5 +1,5 @@
 import React, { useEffect, Component } from "react";
-import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
+import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider, ScrollView } from "native-base";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { StyleSheet, View } from 'react-native';
 import DatabaseManager from "../DatabaseManager";
@@ -58,7 +58,7 @@ const TaskList = ({route, navigation}) => {
             {day}
           </Heading>
           <VStack space={4}>
-            <VStack space={2}>
+            <ScrollView space={2}>
               {list.map((item, itemI) => <HStack w="100%" justifyContent="space-between" alignItems="center" key={item.title + itemI.toString()}>
                   <Checkbox isChecked={item.isCompleted} onChange={() => handleStatusChange(itemI)} value={item.title} accessibilityLabel = {item.title}></Checkbox>
                   <Text width="100%" flexShrink={1} textAlign="left" mx="2" strikeThrough={item.isCompleted} _light={{
@@ -69,7 +69,7 @@ const TaskList = ({route, navigation}) => {
                     {item.title}
                   </Text>
                 </HStack>)}
-            </VStack>
+            </ScrollView>
           </VStack>
         </Box>
       </Center>;
