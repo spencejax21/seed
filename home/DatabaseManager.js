@@ -1,5 +1,5 @@
 import { database } from '../firebaseConfig';
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, getDoc} from "firebase/firestore";
 
 export default class DatabaseManager{
     static getTasks = async (type) => {
@@ -34,5 +34,17 @@ export default class DatabaseManager{
             return tasks;
         }
       }
+
+    static getUser = async (user) => {
+        const docRef = doc(database, "users", user);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+            return {user: docSnap.username, points: docSnap.points};
+        } else {
+            console.log("No such document!");
+            return {};
+        }
+    }
 }
 

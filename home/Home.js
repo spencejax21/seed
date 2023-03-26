@@ -3,6 +3,7 @@ import { IconButton, Progress, FlatList, Icon, NativeBaseProvider, Box, Center, 
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import DatabaseManager from './DatabaseManager';
 
 
 function WelcomeName() {
@@ -12,7 +13,9 @@ function WelcomeName() {
   </Heading>
 }
 
-const AppDrawer = ({navigation}) => {
+const AppDrawer = ({route, navigation}) => {
+  const { user } = route.params;
+
   const icons = [{
       name: 'home',
       bg: '#1cd0a2',
@@ -38,6 +41,7 @@ const AppDrawer = ({navigation}) => {
         onPress={() => {
           navigation.navigate('detail', {
             type: item.type,
+            user: user
           });
         }} />;
     }} />;
@@ -54,7 +58,7 @@ const AppDrawer = ({navigation}) => {
     </Stack>
   }
   
-  function Home({navigation}) {
+  function Home({route, navigation}) {
     return <View style={styles.container}>
       <Box alignItems="center" flex={1} mt="12">
         <Box ml="8" mr="4" mt="2" justifyContent="space-between" display="flex" flexDirection="row" style={{gap:"85%"}}>
@@ -67,7 +71,7 @@ const AppDrawer = ({navigation}) => {
         </Box>
         
         <Box paddingTop="15%">
-          <AppDrawer navigation={navigation}/>
+          <AppDrawer route = {route} navigation={navigation}/>
           
         </Box>
        

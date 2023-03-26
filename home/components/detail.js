@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import DatabaseManager from "../DatabaseManager";
 
 const TaskList = ({route, navigation}) => {
-    const { type } = route.params;
+    const { type, user } = route.params;
     
     const [list, setList] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
@@ -27,6 +27,7 @@ const TaskList = ({route, navigation}) => {
         try {
           setLoading(true);
           const tasks = await DatabaseManager.getTasks(type);
+          const uid = await DatabaseManager.getUser(user);
           const dbList = [];
           tasks.forEach((task) => {
             dbList.push({title: task.text + " (" + task.points + " pts)", isCompleted: false});
