@@ -6,11 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 function WelcomeName() {
-<<<<<<< HEAD
-  return <Heading color="white" size="2xl" ml="-1" bold="true" mt="-1.5">
-=======
   return <Heading color="black" size="md" ml="-1">
->>>>>>> tasks
     Welcome, user
   </Heading>
 }
@@ -18,33 +14,20 @@ function WelcomeName() {
 const AppDrawer = ({navigation}) => {
   const icons = [{
       name: 'home',
-<<<<<<< HEAD
-      bg: '#1cd0a2'
+      bg: '#1cd0a2',
+      type: "home"
     }, {
       name: 'directions-bus',
-      bg: '#f5c07f'
+      bg: '#f5c07f',
+      type: "transportation"
     }, {
       name: 'cloud',
-      bg: '#dd9fff'
+      bg: '#dd9fff',
+      type: "reuse"
     }, {
       name: 'list',
-      bg: '#76b5ff'
-=======
-      bg: 'amber.600',
-      type: 'home'
-    }, {
-      name: 'directions-bus',
-      bg: 'emerald.600',
-      type: 'transportation'
-    }, {
-      name: 'cloud',
-      bg: 'blue.600',
-      type: 'reuse'
-    }, {
-      name: 'list',
-      bg: 'orange.600',
+      bg: '#76b5ff',
       type: 'all'
->>>>>>> tasks
     }];
     return <FlatList scrollEnabled="false" numColumns={2} m={'-4px'} data={icons} renderItem={({
       item
@@ -77,14 +60,11 @@ const AppDrawer = ({navigation}) => {
           <WelcomeName />
           <Avatar navigation={navigation}/>
         </Box>
-<<<<<<< HEAD
         <Box paddingTop="40%">
           <AppDrawer />
-=======
         <Box paddingTop="35%">
           <AppDrawer navigation={navigation}/>
           <Favorites />
->>>>>>> tasks
         </Box>
       </Box>
     </View>
@@ -96,11 +76,7 @@ const AppDrawer = ({navigation}) => {
       <Pressable onPress={() => {
           navigation.navigate('profile');
       }}>
-<<<<<<< HEAD
-          <Ionicons name="person-circle-outline" size={36} color="white" alignItems="right"/>
-=======
           <Ionicons name="person-circle" size={36} color="black" alignItems="right"/>
->>>>>>> tasks
       </Pressable>);
   }
 
