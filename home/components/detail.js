@@ -1,78 +1,64 @@
-import React from "react";
-import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider } from "native-base";
+import React, { useEffect, Component } from "react";
+import { Input, IconButton, Checkbox, Text, Box, VStack, HStack, Heading, Icon, Center, useToast, NativeBaseProvider, ScrollView } from "native-base";
 import { Feather, Entypo } from "@expo/vector-icons";
-import { StyleSheet, View } from 'react-native'
-
+import { StyleSheet, View } from 'react-native';
+import DatabaseManager from "../DatabaseManager";
 
 const TaskList = ({route, navigation}) => {
     const { type } = route.params;
-    //traverse all tasks in the databaase
-    const instState = [{
-      title: "Turn off your lights",
-      isCompleted: true
-    }, {
-      title: "Meeting with team at 9",
-      isCompleted: false
-    }, {
-      title: "Check Emails",
-      isCompleted: false
-    }, {
-      title: "Write an article",
-      isCompleted: false
-    },{
-      title: type,
-      isCompleted: false
-    }];
-    const [list, setList] = React.useState(instState);
-    const [inputValue, setInputValue] = React.useState("");
-    const toast = useToast();
-  
-    const addItem = title => {
-      if (title === "") {
-        toast.show({
-          title: "Please Enter Text",
-          status: "warning"
-        });
-        return;
-      }
-  
-      setList(prevList => {
-        return [...prevList, {
-          title: title,
-          isCompleted: false
-        }];
-      });
-    };
-  
-    const handleDelete = index => {
-      setList(prevList => {
-        const temp = prevList.filter((_, itemI) => itemI !== index);
-        return temp;
-      });
-    };
+    
+    const [list, setList] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+    const [day, setDay] = React.useState("");
   
     const handleStatusChange = index => {
       setList(prevList => {
         const newList = [...prevList];
-        newList[index].isCompleted = !newList[index].isCompleted;
+        if(!newList[index].isCompleted){
+          newList[index].isCompleted = true;
+        }
+        //newList[index].isCompleted = !newList[index].isCompleted;
         return newList;
       });
     };
-  
+
+    useEffect(() => {
+      async function fetchData(){
+        try {
+          setLoading(true);
+          const tasks = await DatabaseManager.getTasks(type);
+          const dbList = [];
+          tasks.forEach((task) => {
+            dbList.push({title: task.text + " (" + task.points + " pts)", isCompleted: false});
+          });
+          setList(dbList);
+          const d = new Date();
+          const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+          setDay(weekday[d.getDay()]);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        }
+      }
+      fetchData();
+    }, []);
+
+    if(loading) return (
+      <Text>Loading</Text>
+    );
+
+    if (!list) return (
+      <Text>Data not available</Text>
+    );
+      
     return <Center w="100%">
         <Box maxW="300" w="100%">
           <Heading mb="2" size="md">
-            Wednesday
+            {day}
           </Heading>
           <VStack space={4}>
-            <HStack space={2}>
-              <Input flex={1} onChangeText={v => setInputValue(v)} value={inputValue} placeholder="Add Task" />
-              <IconButton borderRadius="sm" variant="solid" icon={<Icon as={Feather} name="plus" size="sm" color="warmGray.50" />} onPress={() => {
-              addItem(inputValue);
-              setInputValue("");
-            }} />
-            </HStack>
-            <VStack space={2}>
+            <ScrollView space={2}>
               {list.map((item, itemI) => <HStack w="100%" justifyContent="space-between" alignItems="center" key={item.title + itemI.toString()}>
                   <Checkbox isChecked={item.isCompleted} onChange={() => handleStatusChange(itemI)} value={item.title} accessibilityLabel = {item.title}></Checkbox>
                   <Text width="100%" flexShrink={1} textAlign="left" mx="2" strikeThrough={item.isCompleted} _light={{
@@ -82,18 +68,26 @@ const TaskList = ({route, navigation}) => {
               }} onPress={() => handleStatusChange(itemI)}>
                     {item.title}
                   </Text>
-                  <IconButton size="sm" colorScheme="trueGray" icon={<Icon as={Entypo} name="minus" size="xs" color="trueGray.400" />} onPress={() => handleDelete(itemI)} />
                 </HStack>)}
-            </VStack>
+            </ScrollView>
           </VStack>
         </Box>
       </Center>;
   };
 
+  function Back({navigation}) {
+    return <IconButton mr="82%" mt="8"  m={'4px'} borderRadius="full" variant="solid" 
+        p="2" icon={<Icon color="white" name="back" as={Entypo} size="lg" aria-label="back"/>} 
+        onPress={() => {
+          navigation.navigate('home');
+        }} />;
+  }
+
 
   function Detail({route, navigation}) {
     return <View style={styles.container}>
-      <Box alignItems="center" flex={1} mt="12">
+      <Back navigation={navigation}/>
+      <Box alignItems="center" flex={1} mt="8">     
         <TaskList route={route} navigation={navigation}/>
       </Box>
     </View>
@@ -105,7 +99,7 @@ const TaskList = ({route, navigation}) => {
       flex: 1,
       backgroundColor: 'white',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
     }
   })
 

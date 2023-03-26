@@ -1,12 +1,8 @@
-import { Box, Text,  HStack, Pressable, Center, Image} from "native-base";
 
-export default Google = ({navigation}) => {
-    return <Box alignItems="center">
-        <Pressable rounded="xl" bg="#1d2225" shadow="3" p="2"  onPress={() => {
-            navigation.navigate('main')
+            navigation.navigate('home')
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'main' }],
+                routes: [{ name: 'home' }],
               });
         }}>
             <Center width={64} height={8}>
