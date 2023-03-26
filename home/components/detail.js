@@ -75,10 +75,19 @@ const TaskList = ({route, navigation}) => {
       </Center>;
   };
 
+  function Back({navigation}) {
+    return <IconButton mr="82%" mt="4"  m={'4px'} borderRadius="full" variant="solid" 
+        p="2" icon={<Icon color="white" name="back" as={Entypo} size="lg" aria-label="back"/>} 
+        onPress={() => {
+          navigation.navigate('home');
+        }} />;
+  }
+
 
   function Detail({route, navigation}) {
     return <View style={styles.container}>
-      <Box alignItems="center" flex={1} mt="12">
+      <Back navigation={navigation}/>
+      <Box alignItems="center" flex={1} mt="8">     
         <TaskList route={route} navigation={navigation}/>
       </Box>
     </View>
@@ -90,7 +99,7 @@ const TaskList = ({route, navigation}) => {
       flex: 1,
       backgroundColor: 'white',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
     }
   })
 
