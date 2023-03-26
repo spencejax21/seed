@@ -10,7 +10,7 @@ function WelcomeName() {
   </Heading>
 }
 
-function AppDrawer() {
+const AppDrawer = ({navigation}) => {
   const icons = [{
       name: 'home',
       bg: 'amber.600'
@@ -27,7 +27,7 @@ function AppDrawer() {
     return <FlatList numColumns={2} m={'-4px'} data={icons} renderItem={({
       item
     }) => {
-      return <IconButton m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
+      return <IconButton  m={'12px'} borderRadius="full" bg={item.bg} variant="solid" p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" />} />;
     }} />;
   }
 
