@@ -6,42 +6,58 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 function WelcomeName() {
-
-  return <Heading color="black" size="md" ml="-1">
-    Welcome, user!
+  return <Heading color="black" size="xl" ml="-1">
+    Welcome, user
   </Heading>
 }
 
 const AppDrawer = ({navigation}) => {
   const icons = [{
       name: 'home',
-      bg: '#1cd0a2',
-      type: "home"
+      bg: '#dd9fff',
+      type: "home",
+      right: "50%",
+      bottom: "60%",
+      label: "House"
     }, {
       name: 'directions-bus',
       bg: '#f5c07f',
-      type: "transportation"
+      type: "transportation",
+      right: "6%",
+      bottom: "60%",
+      label: "Transport"
     }, {
-      name: 'cloud',
-      bg: '#dd9fff',
-      type: "reuse"
+      name: 'eco',
+      bg: '#1cd0a2',
+      type: "reuse",
+      right: "50%",
+      bottom: "40%",
+      label: "Recycle"
     }, {
       name: 'list',
       bg: '#76b5ff',
-      type: 'all'
+      type: 'all',
+      right: "5%",
+      bottom: "40%",
+      label: "All tasks"
     }];
-    return <FlatList scrollEnabled="false" numColumns={2} m={'-4px'} data={icons} renderItem={({
-      item
-    }) => {
-      return <IconButton m={'12px'} borderRadius="full" bg={item.bg} variant="solid" 
-        p="12" icon={<Icon color="white" name={item.name} as={MaterialIcons} size="3xl" aria-label={item.type}/>} 
-        onPress={() => {
-          navigation.navigate('detail', {
+    return <ZStack paddingRight="80%">
+      <Text style={{zIndex: 1}} bottom="-100" right="208" color="white" fontSize="lg" bold="true">House</Text>
+      <Text style={{zIndex: 1}} bottom="-100" right="33" color="white" fontSize="lg" bold="true">Transport</Text>
+      <Text style={{zIndex: 1}} bottom="-230" right="202" color="white" fontSize="lg" bold="true">Recycle</Text>
+      <Text style={{zIndex: 1}} bottom="-230" right="43" color="white" fontSize="lg" bold="true">All lists</Text>
+      <FlatList scrollEnabled="false" numColumns={2} m={'-4px'} data={icons} renderItem={({
+      item }) => {
+      return <IconButton m={'12px'} borderRadius="md" bg={item.bg} variant="solid" 
+          p="12" icon={<Icon mt="-7" color="white" name={item.name} as={MaterialIcons} size="4xl" aria-label={item.type}/>} 
+          onPress={() => {
+            navigation.navigate('detail', {
             type: item.type,
-          });
-        }} />;
-    }} />;
-  }
+            });
+          }} />
+    }} /> 
+    </ZStack>
+  } 
 
   function Favorites() {
     return <Stack space={2}>
@@ -57,9 +73,8 @@ const AppDrawer = ({navigation}) => {
   function Home({navigation}) {
     return <View style={styles.container}>
       <Box alignItems="center" flex={1} mt="12">
-        <Box ml="8" mr="4" mt="2" justifyContent="space-between" display="flex" flexDirection="row" style={{gap:"85%"}}>
+        <Box ml="5" mr="4" mt="2" justifyContent="space-between" display="flex" flexDirection="row">
           <WelcomeName />
-          <Avatar navigation={navigation}/>
         </Box>
         
         <Box ml="8" mr="4" mt="20%" justifyContent="space-between" display="flex" flexDirection="row" style={{gap:"85%"}}>
