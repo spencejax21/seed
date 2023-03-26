@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, FlatList, Icon, NativeBaseProvider, Box, Center, Heading, Stack, HStack, Text, Pressable } from 'native-base';
+import { IconButton, Progress, FlatList, Icon, NativeBaseProvider, Box, Center, Heading, Stack, HStack, Text, Pressable } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -61,10 +61,17 @@ const AppDrawer = ({navigation}) => {
           <WelcomeName />
           <Avatar navigation={navigation}/>
         </Box>
-        <Box paddingTop="35%">
-          <AppDrawer navigation={navigation}/>
-          <Favorites />
+        
+        <Box ml="8" mr="4" mt="20%" justifyContent="space-between" display="flex" flexDirection="row" style={{gap:"85%"}}>
+          <ProgressBar/>
         </Box>
+        
+        <Box paddingTop="15%">
+          <AppDrawer navigation={navigation}/>
+          
+        </Box>
+       
+        
       </Box>
     </View>
 
@@ -78,6 +85,21 @@ const AppDrawer = ({navigation}) => {
           <Ionicons name="person-circle" size={36} color="black" alignItems="right"/>
       </Pressable>);
   }
+
+  function ProgressBar()  {
+    return (
+        <Box w="90%" maxW="400">
+          <Progress style={{ height: 30, width: undefined }} bg="coolGray.100" _filledTrack={{
+        bg: "lime.500"
+        //change value to points/daily goal
+        //default daily goal should be 30 points in a day
+        //can change in settings?
+      }} value={45} mx="4" />
+          <Text ml = "25%" fontSize="xs">Daily Progress: XX Points</Text>
+          
+        </Box>)
+
+  };
 
   const styles = StyleSheet.create({
     container: {
