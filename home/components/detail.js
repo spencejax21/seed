@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native'
 
 
 const TaskList = ({navigation}) => {
+    //traverse all tasks in the databaase
     const instState = [{
       title: "Turn off your lights",
       isCompleted: true

@@ -58,7 +58,7 @@ const AppDrawer = ({navigation}) => {
           <Avatar navigation={navigation}/>
         </Box>
         <Box paddingTop="35%">
-          <AppDrawer />
+          <AppDrawer navigation={navigation}/>
           <Favorites />
         </Box>
       </Box>
