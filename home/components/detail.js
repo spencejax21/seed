@@ -29,7 +29,7 @@ const TaskList = ({route, navigation}) => {
           const tasks = await DatabaseManager.getTasks(type);
           const dbList = [];
           tasks.forEach((task) => {
-            dbList.push({title: task.title, isCompleted: false});
+            dbList.push({title: task.text + " (" + task.points + " pts)", isCompleted: false});
           });
           setList(dbList);
           const d = new Date();
