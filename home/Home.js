@@ -4,8 +4,9 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+
 function WelcomeName() {
-  return <Heading color="white" size="md" ml="-1">
+  return <Heading color="white" size="2xl" ml="-1" bold="true" mt="-1.5">
     Welcome, user
   </Heading>
 }
@@ -13,16 +14,16 @@ function WelcomeName() {
 const AppDrawer = ({navigation}) => {
   const icons = [{
       name: 'home',
-      bg: 'amber.600'
+      bg: '#1cd0a2'
     }, {
       name: 'directions-bus',
-      bg: 'emerald.600'
+      bg: '#f5c07f'
     }, {
       name: 'cloud',
-      bg: 'blue.600'
+      bg: '#dd9fff'
     }, {
       name: 'list',
-      bg: 'orange.600'
+      bg: '#76b5ff'
     }];
     return <FlatList scrollEnabled="false" numColumns={2} m={'-4px'} data={icons} renderItem={({
       item
@@ -45,13 +46,12 @@ const AppDrawer = ({navigation}) => {
   function Home({navigation}) {
     return <View style={styles.container}>
       <Box alignItems="center" flex={1} mt="12">
-        <Box justifyContent="space-between" display="flex" flexDirection="row" style={{gap:"160%"}}>
+        <Box ml="8" mr="4" mt="2" justifyContent="space-between" display="flex" flexDirection="row" style={{gap:"85%"}}>
           <WelcomeName />
           <Avatar navigation={navigation}/>
         </Box>
-        <Box paddingTop="35%">
+        <Box paddingTop="40%">
           <AppDrawer />
-          <Favorites />
         </Box>
       </Box>
     </View>
@@ -63,7 +63,7 @@ const AppDrawer = ({navigation}) => {
       <Pressable onPress={() => {
           navigation.navigate('profile');
       }}>
-          <Ionicons name="person-circle" size={36} color="white" alignItems="right"/>
+          <Ionicons name="person-circle-outline" size={36} color="white" alignItems="right"/>
       </Pressable>);
   }
 
